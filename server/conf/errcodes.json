@@ -1,0 +1,291 @@
+[
+    {
+        "en": "Error 701 - Could not read paylaod",
+        "status": 400,
+        "errcode": "701",
+        "Description": "Payload could not be read"
+    },
+    {
+        "en": "Error 702 - Error occured while creating user",
+        "status": 500,
+        "errcode": "702",
+        "Description": "Error while creating user"
+    },
+    {
+        "en": "User created successfully",
+        "status": 201,
+        "errcode": "703",
+        "Description": "User created successfully"
+    },
+    {
+        "en": "Error 704 - Error occured while validating user",
+        "status": 500,
+        "errcode": "704",
+        "Description": "internal server error"
+    },
+    {
+        "en": "user already exists, Please change name",
+        "status": 409,
+        "errcode": "705",
+        "Description": "Please change name!"    
+    },
+
+    {
+        "en": "Error 707 - Invalid Page Number",
+        "status": 400,
+        "errcode": "707",
+        "Description": "Please enter valid page number"
+    },
+    {
+        "en": "Error 708 - Invalid Page Size",
+        "status": 400,
+        "errcode": "708",
+        "Description": "Please enter valid page size"
+    },
+    {
+        "en": "Error 709 - Error while Fetching All Users",
+        "status": 400,
+        "errcode": "709",
+        "Description": "DB is Empty"
+    },
+    {
+        "en": "Error 710 - Error while Fetching All Users",
+        "status": 500,
+        "errcode": "710",
+        "Description": "internal server error"
+    },
+    {
+        "en": "Error 711 - Error while Fetching All Users",
+        "status": 400,
+        "errcode": "711",
+        "Description": "somthing went wrong"
+    },
+    {
+        "en": "All Users Fetched Successfully",
+        "status": 200,
+        "errcode": "712",
+        "Description": "All Users Fetched Successfully"
+    },
+    {
+        "en": "Error 713 - Invalid User Id",
+        "status": 400,
+        "errcode": "713",
+        "Description": "Please enter valid user id"
+    },
+    {
+        "en": "Error 714 - No User Found with given Id",
+        "status": 400,
+        "errcode": "714",
+        "Description": "No User Found with given Id"
+    },
+    {
+        "en": "User Fetched Successfully",
+        "status": 200,
+        "errcode": "715",
+        "Description": "User Fetched Successfully"
+    },
+    {
+        "en": "Error 716 - Error while Updating User",
+        "status": 400,
+        "errcode": "716",
+        "Description": "somthing went wrong"
+    },
+    {
+        "en": "User Updated Successfully",
+        "status": 200,
+        "errcode": "717",
+        "Description": "User Updated Successfully"
+    },
+
+    {
+        "en": "Error 718 - Error while Deleting User",
+        "status": 400,
+        "errcode": "718",
+        "Description": "somthing went wrong"
+    },
+    {
+        "en": "User Deleted Successfully",
+        "status": 200,
+        "errcode": "719",
+        "Description": "User Deleted Successfully"
+    },
+
+
+    {
+        "en": "Error 720 - Error while getting Id",
+        "status": 400,
+        "errcode": "720",
+        "Description": "Please enter Id in params"
+    },
+    {
+        "en": "Error 721 - Invalid Id",
+        "status": 400,
+        "errcode": "721",
+        "Description": "Please enter valid Id"
+    },
+    {
+        "en": "Error 722 - User Not Updated, Please change name!",
+        "status": 409,
+        "errcode": "722",
+        "Description": "Please change name!"    
+    },
+    {
+        "en": "Error 723 - User Not Found with given Id",
+        "status": 400,
+        "errcode": "723",
+        "Description": "User Not Found with given Id" 
+    },
+    {
+        "en": "Error 724 - No User found",
+        "status": 400,
+        "errcode": "724",
+        "Description": "No User found" 
+    },
+    {
+        "en": "Error 725 - Error while deleting All Users",
+        "status": 400,
+        "errcode": "725",
+        "Description": "Error while deleting All Users" 
+    },
+    {
+        "en": "Error 726 - DB is Empty, while deleting All Users",
+        "status": 400,
+        "errcode": "726",
+        "Description": "No users found to delete" 
+    },
+    {
+        "en": "All Users Deleted Successfully",
+        "status": 400,
+        "errcode": "727",
+        "Description": "All Users Deleted Successfully" 
+    },
+    {
+        "en": "Error 728 - You are not authorized to delete all records",
+        "status": 400,
+        "errcode": "728",
+        "Description": "Please Enter valid token to delete all users" 
+    },
+
+
+    {
+        "en": "Error 800 - Could not read paylaod",
+        "status": 400,
+        "errcode": "800",
+        "Description": "Payload could not be read"
+    },
+    {
+        "en": "Error 801 - No User Found with given UserId",
+        "status": 400,
+        "errcode": "801",
+        "Description": "No User Found with given UserId"
+    },
+    {
+        "en": "Error 802 - Something went wrong",
+        "status": 500,
+        "errcode": "802",
+        "Description": "internal server error"
+    },
+    {
+        "en": "Error 803 - Error occured while creating employee",
+        "status": 400,
+        "errcode": "803",
+        "Description": "Error while creating employee"
+    },
+    {
+        "en": "Error 804 - Invalid User Id",
+        "status": 400,
+        "errcode": "804",
+        "Description": "Please enter valid user id"
+    },
+    {
+        "en": "Error 805 - No User Found with given Id",
+        "status": 400,
+        "errcode": "805",
+        "Description": "No User Found with given Id"
+    },
+    {
+        "en": "Employee created successfully",
+        "status": 201,
+        "errcode": "806",
+        "Description": "Employee created successfully"
+    },
+    {
+        "en": "Error 807 - employee already exists",
+        "status": 409,
+        "errcode": "807",
+        "Description": "employee already exists"
+    },
+    {
+        "en": "Employee updated successfully",
+        "status": 200,
+        "errcode": "808",
+        "Description": "Employee updated successfully"
+    },
+    {
+        "en": "Error 809 - Error while updating employee",
+        "status": 409,
+        "errcode": "809",
+        "Description": "Error while updating employee"
+    },
+    {
+        "en": "Employee Deleted successfully",
+        "status": 200,
+        "errcode": "810",
+        "Description": "Employee Deleted successfully"
+    },
+    {
+        "en": "Error 811 - Error while deleting employee",
+        "status": 400,
+        "errcode": "811",
+        "Description": "Error while deleting employee"
+    },
+    {
+        "en": "Employee fetched successfully",
+        "status": 200,
+        "errcode": "812",
+        "Description": "Employee fetched successfully"
+    },
+    {
+        "en": "Error 813 - Error while Fetching All Employees",
+        "status": 400,
+        "errcode": "813",
+        "Description": "DB is Empty"
+    },
+    {
+        "en": "Error 814 - Error while Fetching All Employees",
+        "status": 500,
+        "errcode": "814",
+        "Description": "internal server error"
+    },
+    {
+        "en": "Error 815 - No Employee found",
+        "status": 400,
+        "errcode": "815",
+        "Description": "No Employee found" 
+    },
+    {
+        "en": "Error 816 - Error while Fetching All Employee details",
+        "status": 400,
+        "errcode": "816",
+        "Description": "somthing went wrong"
+    },
+    {
+        "en": "All Employee details Fetched Successfully",
+        "status": 200,
+        "errcode": "817",
+        "Description": "All Employees details Fetched Successfully"
+    },
+    {
+        "en": "Error 818 - Error while deleting user and all his employees",
+        "status": 400,
+        "errcode": "818",
+        "Description": "somthing went wrong"
+    },
+    {
+        "en": "Error 819 - Error while converting status code",
+        "status": 400,
+        "errcode": "819",
+        "Description": "somthing went wrong"
+    }
+    
+]

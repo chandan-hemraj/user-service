@@ -1,0 +1,7 @@
+CreateUser: ./../payloadSchemas/users/createUser.json
+
+UpdateUser: ./../payloadSchemas/users/updateUser.json
+
+CreateEmployee: ./../payloadSchemas/employees/createEmployee.json
+
+UpdateEmployee: ./../payloadSchemas/employees/updateEmployee.json
