@@ -41,7 +41,7 @@ paths:
       - application/json
   /info:
     get:
-      operationId: VersionInfo
+      operationId: Info
       consumes:
       - '*/*'
       produces:

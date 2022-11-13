@@ -6,17 +6,16 @@
 package services
 
 import (
-	"UserManagement/client"
-	common "UserManagement/common"
-	employee_repository "UserManagement/repository/employees"
-	user_repository "UserManagement/repository/users"
+	"errors"
+	common "user-service/common"
+	employee_client "user-service/employee"
+	user_repository "user-service/repository/users"
 
 	"github.com/go-chassis/openlog"
 )
 
 type TemplateService struct {
-	User_Repo     user_repository.TemplateRepositoryInterface
-	Employee_Repo employee_repository.TemplateRepositoryInterface
+	User_Repo user_repository.TemplateRepositoryInterface
 }
 
 // sample service implementation of user
@@ -56,7 +55,7 @@ func (ts *TemplateService) FetchUser(input common.FetchUserInput) common.Respons
 		openlog.Error("Error occured while fetching user")
 		return common.ResponseHandler(errcode, "en", 0, err.Error())
 	}
-	res2, errcode, err := ts.Employee_Repo.Fetch(input.ID)
+	res2, errcode, err := employee_client.FetchEmployee(input.ID, nil)
 	if err != nil {
 		openlog.Error("Error occured while fetching Employee")
 		return common.ResponseHandler(errcode, "en", 0, err.Error())
@@ -114,17 +113,20 @@ func (ts *TemplateService) UpdateUser(input common.UpdateUserInput) common.Respo
 // }
 
 func (ts *TemplateService) DeleteUser(input common.DeleteUserInput) common.Response {
-	res, _, errrr := client.MakeRequest("http://61c2ffca70d48fba53ceea1d_ContainerManager/deletebyuid/"+input.ID, "DELETE", nil, nil)
-	var stat float64 = 200
-	if res["status"].(float64) == stat {
-		errcode, err := ts.User_Repo.Delete(input.ID)
-		if err != nil {
-			openlog.Error("Error occured while deleting user")
-			return common.ResponseHandler(errcode, "en", 0, err.Error())
+	res, _, errr := employee_client.DeleteEmployee(input.ID, nil)
+	if errr == nil {
+		var stat float64 = 200
+		if res["status"].(float64) == stat {
+			errcode, err := ts.User_Repo.Delete(input.ID)
+			if err != nil {
+				openlog.Error("Error occured while deleting user")
+				return common.ResponseHandler(errcode, "en", 0, err.Error())
+			}
+			return common.ResponseHandler(errcode, "en", 1, nil)
 		}
-		return common.ResponseHandler(errcode, "en", 1, nil)
+		return common.ResponseHandler("818", "en", 0, errors.New("Employee not deleted"))
 	}
-	return common.ResponseHandler("818", "en", 0, errrr)
+	return common.ResponseHandler("818", "en", 0, errr)
 }
 
 func (ts *TemplateService) DeleteAllUsers(input common.DeleteAllUsersInput) common.Response {

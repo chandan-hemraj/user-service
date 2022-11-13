@@ -8,15 +8,13 @@
 package main
 
 import (
-	_ "UserManagement/chassisHandlers"
-	"UserManagement/common"
-	"UserManagement/database"
-	employee_repository "UserManagement/repository/employees"
-	user_repository "UserManagement/repository/users"
-	resource "UserManagement/resource"
-	employee_services "UserManagement/services/employees"
-	user_services "UserManagement/services/users"
 	"encoding/json"
+	_ "user-service/chassisHandlers"
+	"user-service/common"
+	"user-service/database"
+	user_repository "user-service/repository/users"
+	resource "user-service/resource"
+	user_services "user-service/services/users"
 
 	"io/ioutil"
 	"log"
@@ -26,10 +24,9 @@ import (
 	"github.com/go-chassis/openlog"
 )
 
-func getService() (*user_services.TemplateService, *employee_services.TemplateService) {
+func getService() *user_services.TemplateService {
 	user_repo := user_repository.TemplateRepository{DbClient: database.GetClient(), DatabaseName: "chandan"}
-	employee_repo := employee_repository.TemplateRepository{DbClient: database.GetClient(), DatabaseName: "chandan"}
-	return &user_services.TemplateService{User_Repo: &user_repo, Employee_Repo: &employee_repo}, &employee_services.TemplateService{User_Repo: &user_repo, Employee_Repo: &employee_repo}
+	return &user_services.TemplateService{User_Repo: &user_repo}
 }
 
 func LoadErrors(errors []map[string]interface{}) {
@@ -41,7 +38,7 @@ func LoadErrors(errors []map[string]interface{}) {
 }
 
 func main() {
-	bytes, err := ioutil.ReadFile("/UserManagement/server/conf/errcodes.json")
+	bytes, err := ioutil.ReadFile("conf/errcodes.json")
 	if err != nil {
 		log.Fatal(err)
 		return

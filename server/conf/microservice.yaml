@@ -1,3 +1,6 @@
 servicecomb:
   service:
-    name: User_Management
+    name: User-Service
+  isolation:
+    Consumer:
+      timeoutInSeconds: 50  

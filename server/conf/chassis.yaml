@@ -1,7 +1,7 @@
 ---
 servicecomb:
   registry:
-      address: http://192.168.1.130:30100 # If type is File then address will be the path of the file
+      address: http://localhost:30100 # If type is File then address will be the path of the file
   protocols:
     rest:
       listenAddress: "0.0.0.0:5001"

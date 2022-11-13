@@ -7,14 +7,10 @@
 package resource
 
 import (
-	Context "context"
 	"net/http"
-	"time"
 
-	"UserManagement/client"
-	"UserManagement/common"
-	employee_services "UserManagement/services/employees"
-	user_services "UserManagement/services/users"
+	"user-service/common"
+	user_services "user-service/services/users"
 
 	"github.com/go-chassis/go-chassis/v2/server/restful"
 	"github.com/go-chassis/openlog"
@@ -22,13 +18,11 @@ import (
 
 type TemplateResource struct {
 	us user_services.TemplateServiceInterface
-	es employee_services.TemplateServiceInterface
 }
 
 // Services should get injected before using.
-func (tr *TemplateResource) Inject(us user_services.TemplateServiceInterface, es employee_services.TemplateServiceInterface) {
+func (tr *TemplateResource) Inject(us user_services.TemplateServiceInterface) {
 	tr.us = us
-	tr.es = es
 }
 
 // creates the user
@@ -114,92 +108,20 @@ func (r *TemplateResource) DeleteAllUsers(context *restful.Context) {
 	context.WriteHeaderAndJSON(res.Status, res, "application/json")
 }
 
-func (r *TemplateResource) CreateEmployee(context *restful.Context) {
-	openlog.Info("Got a request to create Employee")
-	// create a employee map for payload
-	employee := make(map[string]interface{})
-	// Read the payload into user from context
-	err := context.ReadEntity(&employee)
-	if err != nil {
-		openlog.Error(err.Error())
-		// Send error response
-		context.WriteHeaderAndJSON(400, common.ResponseHandler("800", "en", 0, nil), "application/json")
-		return
+func (r *TemplateResource) Info(context *restful.Context) {
+	openlog.Info("Got a request to get info")
+	type Info struct {
+		ServiceName string `json:"service_name"`
+		Version     string `json:"version"`
 	}
-	// call service layer
-	ip := common.CreateEmployeeInput{Metadata: employee, Language: "en"}
-	res := r.es.CreateEmployee(ip)
-	context.WriteHeaderAndJSON(res.Status, res, "application/json")
-}
-
-func (r *TemplateResource) FetchAllEmployees(context *restful.Context) {
-	openlog.Info("Got a request to get all employees")
-	//Get the filters from context
-	filters, page, limit := context.ReadQueryParameter("filters"), context.ReadQueryParameter("page"), context.ReadQueryParameter("size")
-
-	//call service layer
-	ip := common.FetchAllEmployeesInput{Filters: filters, Page: page, Size: limit, Language: "en"}
-	res := r.es.FetchAllEmployees(ip)
-	context.WriteHeaderAndJSON(res.Status, res, "application/json")
-}
-
-func (r *TemplateResource) UpdateEmployee(context *restful.Context) {
-	openlog.Info("Got a request to update employee")
-	// create a user map for payload
-	employee := make(map[string]interface{})
-	// Read the payload into user from context
-	err := context.ReadEntity(&employee)
-	if err != nil {
-		openlog.Error(err.Error())
-		// Send error response
-		context.WriteHeaderAndJSON(400, common.ResponseHandler("800", "en", 0, nil), "application/json")
-		return
-	}
-
-	id := context.ReadPathParameter("id")
-
-	// call service layer
-	ip := common.UpdateEmployeeInput{ID: id, Metadata: employee, Language: "en"}
-	res := r.es.UpdateEmployee(ip)
-	context.WriteHeaderAndJSON(res.Status, res, "application/json")
-}
-
-func (r *TemplateResource) FetchEmployee(context *restful.Context) {
-	openlog.Info("Got a request to get employee")
-	// Get the user id from context
-	id := context.ReadPathParameter("id")
-	// call service layer
-	ip := common.FetchEmployeeInput{ID: id, Language: "en"}
-	res := r.es.FetchEmployee(ip)
-	context.WriteHeaderAndJSON(res.Status, res, "application/json")
-}
-
-func (r *TemplateResource) DeleteEmployee(context *restful.Context) {
-	openlog.Info("Got a request to delete employee")
-	// Get the user id from context
-	id := context.ReadPathParameter("id")
-	// call service layer
-	ip := common.DeleteEmployeeInput{ID: id, Language: "en"}
-	res := r.es.DeleteEmployee(ip)
-	context.WriteHeaderAndJSON(res.Status, res, "application/json")
-}
-
-func (r *TemplateResource) VersionInfo(context *restful.Context) {
-	ctx, cancel := Context.WithTimeout(Context.TODO(), time.Microsecond*200)
-	defer cancel()
-	res, _, err := client.MakeRequest("http://61c2ffca70d48fba53ceea1d_ContainerManager/fetchallemployee", "GET", nil, nil)
-	if err != nil {
-		openlog.Error(err.Error())
-		context.WriteHeaderAndJSON(500, err, "application/json")
-		return
-	}
+	res := Info{ServiceName: "User Service", Version: "1.0.0"}
 	context.WriteHeaderAndJSON(200, res, "application/json")
 }
 
 // Define all APIs here.
 func (r *TemplateResource) URLPatterns() []restful.Route {
 	return []restful.Route{
-		{Method: http.MethodGet, Path: "/info", ResourceFunc: r.VersionInfo},
+		{Method: http.MethodGet, Path: "/info", ResourceFunc: r.Info},
 		{Method: http.MethodPost, Path: "/createUser", ResourceFunc: r.CreateUser, Consumes: []string{"application/json"}, Produces: []string{"application/json"}},
 		{Method: http.MethodGet, Path: "/getAllUsers", ResourceFunc: r.FetchAllUsers, Consumes: []string{"application/json"}, Produces: []string{"application/json"}},
 		{Method: http.MethodGet, Path: "/getUser/{id}", ResourceFunc: r.FetchUser, Consumes: []string{"application/json"}, Produces: []string{"application/json"}},

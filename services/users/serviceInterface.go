@@ -6,7 +6,7 @@
 package services
 
 import (
-	common "UserManagement/common"
+	common "user-service/common"
 )
 
 type TemplateServiceInterface interface {

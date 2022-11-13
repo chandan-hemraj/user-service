@@ -6,13 +6,13 @@
 package chassisHandlers
 
 import (
-	"UserManagement/common"
 	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"user-service/common"
 
 	"github.com/emicklei/go-restful"
 	"github.com/go-chassis/go-archaius"

@@ -165,8 +165,6 @@
         "errcode": "728",
         "Description": "Please Enter valid token to delete all users" 
     },
-
-
     {
         "en": "Error 800 - Could not read paylaod",
         "status": 400,
@@ -285,6 +283,12 @@
         "en": "Error 819 - Error while converting status code",
         "status": 400,
         "errcode": "819",
+        "Description": "somthing went wrong"
+    },
+    {
+        "en": "Error 820 - Error while fetching employee details",
+        "status": 500,
+        "errcode": "820",
         "Description": "somthing went wrong"
     }
     
